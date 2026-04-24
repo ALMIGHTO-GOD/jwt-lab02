@@ -39,18 +39,31 @@ function Login() {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <input
-        placeholder="usuario"
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="password"
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleLogin}>Entrar</button>
+    <div className="page page-login">
+      <div className="card">
+        <h2>Inicia sesión</h2>
+        <p className="subtitle">
+          Accede con tu usuario y contraseña para entrar al dashboard seguro.
+        </p>
+
+        <div className="form-group">
+          <input
+            placeholder="Usuario"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <input
+            type="password"
+            placeholder="Contraseña"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+
+        <button className="btn primary" onClick={handleLogin}>
+          Entrar
+        </button>
+      </div>
     </div>
   );
 }

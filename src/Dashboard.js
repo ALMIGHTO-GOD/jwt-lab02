@@ -19,24 +19,40 @@ function Dashboard() {
   }, []);
 
   const addComment = () => {
-    // ❌ VULNERABLE A XSS
     setComments([...comments, comment]);
   };
 
   return (
-    <div>
-      <h2>{message}</h2>
+    <div className="page page-dashboard">
+      <div className="card">
+        <h2>{message || "Cargando dashboard..."}</h2>
+        <p className="subtitle">
+          Bienvenido al panel de control seguro de Brian Eduardo Licea
+          Langarica.
+        </p>
 
-      <input
-        placeholder="Escribe un comentario"
-        onChange={(e) => setComment(e.target.value)}
-      />
-      <button onClick={addComment}>Agregar</button>
+        <div className="form-group">
+          <input
+            placeholder="Escribe un comentario"
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+          />
+          <button className="btn secondary" onClick={addComment}>
+            Agregar comentario
+          </button>
+        </div>
 
-      <div>
-        {comments.map((c, i) => (
-          <p key={i} dangerouslySetInnerHTML={{ __html: c }} />
-        ))}
+        <div className="comments">
+          {comments.length > 0 ? (
+            comments.map((c, i) => (
+              <p className="comment" key={i}>
+                {c}
+              </p>
+            ))
+          ) : (
+            <p className="empty">Aún no hay comentarios.</p>
+          )}
+        </div>
       </div>
     </div>
   );
